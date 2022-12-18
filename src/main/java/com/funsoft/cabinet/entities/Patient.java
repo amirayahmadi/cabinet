@@ -1,6 +1,7 @@
 package com.funsoft.cabinet.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,9 @@ public class Patient implements Serializable {
     private  String lastname;
     private String phone;
 
+
+    //pour ignorer l'action de conversion de la liste appointement en format json
+    @JsonIgnore
     @OneToMany(mappedBy = "patient",fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE,CascadeType.PERSIST})
     private List<Appointement> appointements;
 }
